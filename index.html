@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <style>
+        #timer {
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="timer"></div>
+
+    <script>
+        function startCountdown(duration) {
+            let minutes = duration;
+            let seconds = 0;
+            const timerElement = document.getElementById('timer');
+    
+            const intervalId = setInterval(() => {
+                seconds--;
+                if (seconds < 0) {
+                    minutes--;
+                    seconds = 59;
+                }
+    
+                const formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                timerElement.textContent = formattedTime;
+    
+                if (minutes === 0 && seconds === 0) {
+                    clearInterval(intervalId);
+                    // Handle timer expiration here
+                    console.log("Time's up!");
+                }
+            }, 1000);
+        }
+    
+        // Set the countdown duration (in minutes)
+        const countdownDuration = 59;
+        startCountdown(countdownDuration);
+    </script>
+</body>
+</html>
